@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .invalido{
+            border: 2px dashed red;
+        }
+        .valido{
+            border: 2px solid black;
+        }
+    </style>
+</head>
+<body>
+    <form id="invio"action="form" method="post" name="registro">
+        <label for="nome">Nome: </label>
+        <input type="text" id="nome" name="Nome" value="" size="20" maxlength="20" class="valido">
+        <label for="cognome">Cognome: </label>
+        <input type="text" id="cognome" name="Cognome" value="" size="20" maxlength="20"class="valido"><br><br>
+        <label for="mail">E-mail: </label>
+        <input type="text" id="mail" name="email" value="" size="20" maxlength="20"class="valido">
+        <input type="submit" value="Invia">
+        <input type="reset" value="Reset">
+
+</form>
+    <script>
+       document.getElementById("invio").addEventListener("submit", check)
+       function check(event){
+        var a= document.forms.registro;
+        if(a.Cognome.value ==""){
+            document.getElementById("cognome").setAttribute("class","invalido");
+            event.preventDefault();
+        } else{
+            document.getElementById("cognome").setAttribute("class","valido");
+        }
+        if(a.Nome.value ==""){
+            document.getElementById("nome").setAttribute("class","invalido");
+            event.preventDefault();
+        } else{
+            document.getElementById("nome").setAttribute("class","valido");
+        }
+        if(a.email.value ==""){
+            document.getElementById("mail").setAttribute("class","invalido");
+            event.preventDefault();
+        } else{
+            document.getElementById("mail").setAttribute("class","valido");
+        }
+       }
+    </script>
+</body>
+</html>
