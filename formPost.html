@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .invalido{
+            border: 2px dashed red;
+        }
+        .valido{
+            border: 2px solid black;
+        }
+    </style>
+</head>
+<body>
+    <form id="invio"action="form" method="post" name="registro">
+        <label for="nome">Nome: </label>
+        <input type="text" id="nome" name="Nome" value="" size="20" maxlength="20" class="valido" onfocus="valida(this.id)" >
+        <label for="cognome">Cognome: </label>
+        <input type="text" id="cognome" name="Cognome" value="" size="20" maxlength="20"class="valido" onfocus="valida(this.id)" ><br><br>
+        <label for="mail">E-mail: </label>
+        <input type="text" id="mail" name="email" value="" placeholder="esempio@itis.pr.it" size="30" maxlength="40"class="valido" onfocus="valida(this.id)">
+        <label for="numero">Numero di telefono: </label>
+        <input type="text" id="numero" name="Numero" value="" placeholder="xxxxxxxxxx" size="20" maxlength="10"class="valido" onfocus="valida(this.id)">
+
+        <br><input type="submit" value="Invia" onclick="check(event)">
+        <input type="reset" value="Reset" onclick="valida('*')">
+
+</form>
+    <script>
+       function check(event){
+        var a= document.forms.registro;
+        let messaggio = "";
+        if(a.Nome.value ==""||!/^[a-zA-Z\s']+$/i.test(a.Nome.value)){
+            document.getElementById("nome").setAttribute("class","invalido");
+        messaggio+="---Nome mancante o inserito in modo errato---";
+        } else{
+            document.getElementById("nome").setAttribute("class","valido");
+        }
+        if(a.Cognome.value ==""||!/^[a-zA-Z\s']+$/i.test(a.Cognome.value)){
+            document.getElementById("cognome").setAttribute("class","invalido");
+            messaggio+="---Cognome mancante o inserito in modo errato---";
+        } else{
+            document.getElementById("cognome").setAttribute("class","valido");
+        }
+        if(a.email.value ==""||!/^[a-zA-Z0-9._-]+@itis.pr.it+$/i.test(a.email.value)){
+            document.getElementById("mail").setAttribute("class","invalido");
+            messaggio+="---Email mancante o inserita in modo errato---";
+        } else{
+            document.getElementById("mail").setAttribute("class","valido");
+        }
+        if(a.Numero.value ==""||!/\d+$/|| a.Numero.value.length <10){
+            document.getElementById("numero").setAttribute("class","invalido");
+            messaggio+="---Numero di telefono mancante o inserito in modo errato---";
+        } else{
+            document.getElementById("numero").setAttribute("class","valido");
+        }
+        if ( messaggio.length > 0 ) {
+				messaggio =
+				"_______________________________________________________\n\n" +
+				"La richiesta non è stata inviata in quanto alcuni campi\n" +
+				"del form non sono stati compilati.\n" +
+				"______________________________________________________\n" +
+				"\n" + messaggio;
+				alert( messaggio );
+				event.preventDefault();
+			}
+        else{
+
+        }
+
+       }
+
+       function valida(id){
+        document.getElementById(id).setAttribute("class","valido");
+
+       }
+    </script>
+</body>
+</html>
